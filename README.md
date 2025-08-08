@@ -40,7 +40,7 @@ npm run done
 
 
 Project Demo
-link
+https://vibe-check-o-meter.lovable.app/
 [Add your demo video link here] Explain what the video demonstrates
 
 Additional Demos
