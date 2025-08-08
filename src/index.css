@@ -2,57 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Vibe Check-o-Meter Design System - Maximum Chaos, Maximum Fun! */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core chaos colors */
+    --background: 280 100% 97%;
+    --foreground: 280 20% 15%;
 
+    /* Vibe colors - the rainbow of feelings */
+    --vibe-pink: 330 85% 70%;
+    --vibe-blue: 210 90% 65%;
+    --vibe-green: 120 80% 65%;
+    --vibe-yellow: 50 95% 70%;
+    --vibe-purple: 270 75% 70%;
+    --vibe-orange: 25 90% 65%;
+
+    /* Interactive elements */
+    --primary: 330 85% 70%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 330 85% 85%;
+
+    --secondary: 210 90% 65%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 50 95% 70%;
+    --accent-foreground: 280 20% 15%;
+
+    /* UI elements */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 280 20% 15%;
+    --border: 280 40% 85%;
+    --input: 280 40% 92%;
+    --ring: 330 85% 70%;
+    
+    /* Chaos gradients */
+    --gradient-chaos: linear-gradient(135deg, 
+      hsl(var(--vibe-pink)), 
+      hsl(var(--vibe-blue)), 
+      hsl(var(--vibe-green)), 
+      hsl(var(--vibe-yellow)));
+    
+    --gradient-vibe: linear-gradient(270deg, 
+      hsl(var(--vibe-purple)), 
+      hsl(var(--vibe-pink)), 
+      hsl(var(--vibe-orange)));
+    
+    --gradient-shimmer: linear-gradient(90deg, 
+      transparent, 
+      hsla(0, 0%, 100%, 0.3), 
+      transparent);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Magical shadows */
+    --shadow-vibe: 0 10px 30px -5px hsla(var(--vibe-pink), 0.4);
+    --shadow-chaos: 0 20px 60px -10px hsla(var(--vibe-blue), 0.3);
+    --shadow-glow: 0 0 40px hsla(var(--primary-glow), 0.6);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Animation magic */
+    --bounce-timing: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --chaos-timing: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    
+    --radius: 1rem;
   }
 
   .dark {
@@ -100,6 +110,107 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-fredoka;
+    background: var(--gradient-chaos);
+    background-size: 400% 400%;
+    animation: chaosBackground 15s ease infinite;
+  }
+}
+
+@layer components {
+  /* Vibe Button Variants */
+  .vibe-button {
+    @apply relative overflow-hidden rounded-full px-12 py-6 text-2xl font-bold;
+    background: var(--gradient-vibe);
+    background-size: 200% 200%;
+    box-shadow: var(--shadow-vibe);
+    animation: vibeShimmer 3s ease-in-out infinite;
+    transition: all 0.3s var(--bounce-timing);
+  }
+
+  .vibe-button:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: var(--shadow-glow);
+    animation: vibeWobble 0.5s var(--bounce-timing);
+  }
+
+  .vibe-button:active {
+    transform: scale(0.95);
+  }
+
+  /* Result Display */
+  .vibe-result {
+    @apply text-6xl md:text-8xl font-bold text-center mb-8;
+    background: var(--gradient-chaos);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: textShimmer 2s ease-in-out infinite;
+  }
+
+  /* Emoji Explosion */
+  .emoji-explosion {
+    @apply absolute inset-0 pointer-events-none;
+  }
+
+  .emoji {
+    @apply absolute text-4xl;
+    animation: emojiFloat 3s ease-out forwards;
+  }
+
+  /* Floating Elements */
+  .float-element {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes chaosBackground {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes vibeShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes textShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes vibeWobble {
+    0%, 100% { transform: scale(1.05) rotate(1deg); }
+    25% { transform: scale(1.05) rotate(-1deg); }
+    75% { transform: scale(1.05) rotate(1deg); }
+  }
+
+  @keyframes emojiFloat {
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotate(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-200px) scale(1.5) rotate(360deg);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
   }
 }
